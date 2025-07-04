@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Steganography</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Image Steganography</h1>
+    <p>Hide or extract secret messages in PNG images only</p>
+
+    <div class="note" style="color: #c00; background-color: #ffe8e8; padding: 10px; border-radius: 6px; margin-bottom: 15px;">
+      ⚠️ Only <strong>.PNG</strong> images are supported.
+    </div>
+
+    <form id="stego-form" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="file">Select a PNG image:</label>
+        <input type="file" id="file" name="file" accept="image/png" required>
+      </div>
+
+      <div class="form-group">
+        <label>Action:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="action" value="encode" checked> Encode message</label>
+          <label><input type="radio" name="action" value="decode"> Decode message</label>
+        </div>
+      </div>
+
+      <div id="message-group" class="form-group">
+        <label for="message">Secret message:</label>
+        <textarea id="message" name="message" rows="4" placeholder="Enter your message..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required placeholder="Enter password">
+        <small>Password is required for both encoding and decoding</small>
+      </div>
+
+      <button type="submit">Process</button>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>

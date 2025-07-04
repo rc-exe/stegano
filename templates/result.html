@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Result - Image Steganography</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #232526, #414345);
+      color: #fff;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background: #ffffff15;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+
+    .download-btn,
+    .back-btn {
+      display: inline-block;
+      padding: 12px 20px;
+      margin: 20px 10px 0;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .download-btn {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .download-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .back-btn {
+      background-color: #6c757d;
+      color: #fff;
+    }
+
+    .back-btn:hover {
+      background-color: #495057;
+    }
+
+    .message-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-top: 10px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    {% if action == 'encode' %}
+      <h1>✅ Message Encoded Successfully!</h1>
+      <p>Your secret message has been hidden in the image.</p>
+      <p><strong>Original image:</strong> {{ original_filename }}</p>
+      <a href="{{ url_for('download', filename=filename) }}" class="download-btn">⬇️ Download Encoded Image</a>
+    {% else %}
+      <h1>📥 Message Decoded Successfully!</h1>
+      <p><strong>Hidden message from:</strong> {{ original_filename }}</p>
+      <div class="message-box">
+        {{ message }}
+      </div>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" class="back-btn">🔙 Back to Home</a>
+  </div>
+</body>
+</html>
