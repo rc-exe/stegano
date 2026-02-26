@@ -1,0 +1,9 @@
+pip>=24.0
+setuptools>=70
+wheel>=0.43
+
+Flask==3.0.3
+numpy==2.0.2
+Pillow==10.4.0
+cryptography==43.0.1
+gunicorn==22.0.0
